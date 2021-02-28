@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:27:57 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/02/24 18:56:26 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2021/02/28 14:13:57 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ double	get_specular(t_ray *r, double hit, t_sphere *sphere, t_light *l)
 	return (specular_coef);
 }
 
+
+
 int	get_full_color(t_ray *ray, double hit, t_sphere *sphere, t_light *l)
 {
 	int color;
@@ -101,13 +103,13 @@ int	get_full_color(t_ray *ray, double hit, t_sphere *sphere, t_light *l)
 
 	l->dif_coef = get_diffuse(ray, hit, sphere, l);
 	l->spe_coef = get_specular(ray, hit, sphere, l);
-	r = ((int)(sphere->color.x * l->amb_coef + sphere->color.x * l->dif_coef + (sphere->color.x + l->color.x) * l->spe_coef));
+	r = ((int)(sphere->color.x * l->amb_coef + sphere->color.x * l->dif_coef + l->color.x * l->spe_coef));
 	if (r > 255)
 		r = 255;
-	g = ((int)(sphere->color.y * l->amb_coef + sphere->color.y * l->dif_coef + (sphere->color.y + l->color.y) * l->spe_coef));
+	g = ((int)(sphere->color.y * l->amb_coef + sphere->color.y * l->dif_coef + l->color.y * l->spe_coef));
 	if (g > 255)
 		g = 255;
-	b = (int)(sphere->color.z * l->amb_coef + sphere->color.z * l->dif_coef + (sphere->color.z + l->color.z) * l->spe_coef);
+	b = (int)(sphere->color.z * l->amb_coef + sphere->color.z * l->dif_coef + l->color.z * l->spe_coef);
 	if (b > 255)
 		b = 255;
 	color = (r << 16 | g << 8 | b);

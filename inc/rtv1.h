@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoouali <yoouali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:05:37 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/02/28 09:10:14 by yoouali          ###   ########.fr       */
+/*   Updated: 2021/02/28 15:46:31 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct			s_plane
 {
 	t_vec3				pos;
 	t_vec3				color;
-	double				a;
+	// double				a;
 	t_vec3				rot;
 	struct s_plane		*next;
 }						t_plane;
@@ -170,6 +170,8 @@ typedef	struct 		s_hsno
 	double		difcoef;
 	double		specoef;
 	double		ambcoef;
+	t_vec3		l_dir;
+	t_vec3		sh;
 }					t_hsno;
 
 
@@ -207,7 +209,7 @@ double      intersect_cone(t_ray r, t_object *cone);
 double      intersect_cylinder(t_ray r, t_object *cylinder);
 double      intersect_plane(t_ray r, t_object *plane);
 double      intersect_sphere(t_ray r, t_object *sphere);
-int     ft_get_full_color(t_hsno *hsno, t_light *light);
+int     ft_get_full_color(t_hsno *hsno, t_light *light, t_scene *scene, t_ray *ray);
 double      ft_get_specular(t_hsno *hsno, t_light *light);
 double     ft_get_diffuse(t_hsno *hsno, t_light *light);
 

@@ -10,7 +10,7 @@ void    *load_light(t_scene *scene)
         return (NULL);
     light->tab[0] = 0;
     light->tab[1] = 0;
-    light->tab[0] = 0;
+    light->tab[2] = 0;
     light->next = NULL;
     if (!scene->light)
         scene->light = light;

@@ -84,6 +84,7 @@ int     get_object_data(t_xmlpar *xmlpar, int rule_num, char *str)
         object->rotation.x = vec3.x;
         object->rotation.y = vec3.y;
         object->rotation.z = vec3.z;
+        object->rotation = normalize(object->rotation);
     }
     else if (rule_num == 14)
     {

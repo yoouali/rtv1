@@ -36,7 +36,7 @@ int		ft_atoi_base2(char *s, int base)
 	int			len;
 
 	i = 0;
-	if (s[i] == '0' && s[i + 1] == 'x')
+	if (s[i] == '0' && s[i + 1] == 'X')
 		s += 2;
 	while (ft_contains(charset, s[i]))
 		i++;
@@ -65,10 +65,10 @@ int     get_color_data(char *str)
             s[i] = s[i] - 32;
         i++;
     }
-    if (s[0] != '#')
+    if (s[0] != '0' && s[1] != 'X')
         rus = ft_atoi(s);
     else
-        rus = ft_atoi_base2(s + 1, 16);
+        rus = ft_atoi_base2(s, 16);
     free(s);
     return (rus);
 }

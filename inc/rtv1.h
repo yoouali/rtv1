@@ -6,7 +6,7 @@
 /*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:05:37 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/02/28 15:46:31 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2021/03/01 10:46:12 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,13 +157,13 @@ typedef	struct		s_intersect
 	double		t1;
 	double		t2;
 	t_vec3		x;
-	double		del;
+	double		delta;
 }					t_intersect;
 
 typedef	struct 		s_hsno
 {
 	double		hit;
-	t_vec3		surface_normale;
+	t_vec3		surface_normal;
 	t_object	*object;
 	t_light		*light;
 	t_vec3		h;

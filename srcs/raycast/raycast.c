@@ -8,11 +8,11 @@ double intersect_sphere(t_ray r, t_object *sphere)
     inter.x = minus(r.origin, sphere->origin);
     inter.b = 2 * dot(r.dir, inter.x);
     inter.c = dot(inter.x, inter.x) - (sphere->raduis * sphere->raduis);
-    inter.del = inter.b * inter.b - (4 * inter.a * inter.c);
-    if (inter.del < 0)
+    inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
+    if (inter.delta < 0)
         return (-1);
-    inter.t1 = (-inter.b - sqrt(inter.del)) / (2 * inter.a);
-    inter.t2 = (-inter.b + sqrt(inter.del)) / (2 * inter.a);
+    inter.t1 = (-inter.b - sqrt(inter.delta)) / (2 * inter.a);
+    inter.t2 = (-inter.b + sqrt(inter.delta)) / (2 * inter.a);
     if ((inter.t1 <= inter.t2 && inter.t1 >= 0.0) || (inter.t1 >= 0.0 && inter.t2 < 0.0))
         return (inter.t1);
     if ((inter.t2 <= inter.t1 && inter.t2 >= 0.0) || (inter.t2 >= 0.0 && inter.t1 < 0.0))
@@ -43,11 +43,11 @@ double intersect_cylinder(t_ray r, t_object *cylinder)
     inter.x = minus(r.origin, cylinder->origin);
     inter.b = 2 * (dot(r.dir, inter.x) - (dot(r.dir, cylinder->rotation) * dot(inter.x, cylinder->rotation)));
     inter.c = dot(inter.x, inter.x) - (dot(inter.x, cylinder->rotation) * dot(inter.x, cylinder->rotation)) - (cylinder->raduis * cylinder->raduis);
-    inter.del = inter.b * inter.b - (4 * inter.a * inter.c);
-    if (inter.del < 0)
+    inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
+    if (inter.delta < 0)
         return (-1);
-    inter.t1 = (-inter.b - sqrt(inter.del)) / (2 * inter.a);
-    inter.t2 = (-inter.b + sqrt(inter.del)) / (2 * inter.a);
+    inter.t1 = (-inter.b - sqrt(inter.delta)) / (2 * inter.a);
+    inter.t2 = (-inter.b + sqrt(inter.delta)) / (2 * inter.a);
     if ((inter.t1 <= inter.t2 && inter.t1 >= 0.0) || (inter.t1 >= 0.0 && inter.t2 < 0.0))
         return (inter.t1);
     if ((inter.t2 <= inter.t1 && inter.t2 >= 0.0) || (inter.t2 >= 0.0 && inter.t1 < 0.0))
@@ -65,11 +65,11 @@ double intersect_cone(t_ray r, t_object *cone)
     inter.x = minus(r.origin, cone->origin);
     inter.b = 2 * (dot(r.dir, inter.x) - inter.k * (dot(r.dir, cone->rotation) * dot(inter.x, cone->rotation)));
     inter.c = dot(inter.x, inter.x) - inter.k * (dot(inter.x, cone->rotation) * dot(inter.x, cone->rotation));
-    inter.del = inter.b * inter.b - (4 * inter.a * inter.c);
-    if (inter.del < 0)
+    inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
+    if (inter.delta < 0)
         return (-1);
-    inter.t1 = (-inter.b - sqrt(inter.del)) / (2 * inter.a);
-    inter.t2 = (-inter.b + sqrt(inter.del)) / (2 * inter.a);
+    inter.t1 = (-inter.b - sqrt(inter.delta)) / (2 * inter.a);
+    inter.t2 = (-inter.b + sqrt(inter.delta)) / (2 * inter.a);
     if ((inter.t1 <= inter.t2 && inter.t1 >= 0.0) || (inter.t1 >= 0.0 && inter.t2 < 0.0))
         return (inter.t1);
     if ((inter.t2 <= inter.t1 && inter.t2 >= 0.0) || (inter.t2 >= 0.0 && inter.t1 < 0.0))
@@ -90,7 +90,7 @@ double calc_intersect(t_ray r, t_object *object)
     return (0.0);
 }
 
-void calc_surface_normale(t_ray r, t_object *object, t_hsno *hsno)
+void calc_surface_normal(t_ray r, t_object *object, t_hsno *hsno)
 {
     double m;
     double k;
@@ -99,23 +99,23 @@ void calc_surface_normale(t_ray r, t_object *object, t_hsno *hsno)
     if (object->type == 0)
     {
         if (dot(r.dir, object->rotation) < 0)
-            hsno->surface_normale = minus((t_vec3){0, 0, 0}, object->rotation);
+            hsno->surface_normal = minus((t_vec3){0, 0, 0}, object->rotation);
         else
-            hsno->surface_normale = object->rotation;
+            hsno->surface_normal = object->rotation;
     }
     if (object->type == 1)
-        hsno->surface_normale = normalize(minus(hsno->h, object->origin));
+        hsno->surface_normal = normalize(minus(hsno->h, object->origin));
     if (object->type == 2)
     {
         m = dot(r.dir, mult2(hsno->hit, object->rotation)) + dot(minus(r.origin, object->origin), object->rotation);
-        hsno->surface_normale = normalize(minus(minus(hsno->h, object->origin), mult2(m, object->rotation)));
+        hsno->surface_normal = normalize(minus(minus(hsno->h, object->origin), mult2(m, object->rotation)));
     }
     if (object->type == 3)
     {
         k = tan(object->angle * 180 / M_PI);
         k = 1.0 + k * k;
         m = dot(r.dir, mult2(hsno->hit, object->rotation)) + dot(minus(r.origin, object->origin), object->rotation);
-        hsno->surface_normale = normalize(minus(minus(hsno->h, object->origin), mult2(k, mult2(m, object->rotation))));
+        hsno->surface_normal = normalize(minus(minus(hsno->h, object->origin), mult2(k, mult2(m, object->rotation))));
     }
 }
 
@@ -141,7 +141,7 @@ t_object *raycast_object(t_ray r, t_hsno *hsno, t_scene *scene)
     }
     if (hsno->hit < 0.0001)
         return (NULL);
-    calc_surface_normale(r, object, hsno);
+    calc_surface_normal(r, object, hsno);
     return (object);
 }
 
@@ -151,7 +151,7 @@ double ft_get_diffuse(t_hsno *hsno, t_light *light)
     double diffuse_coef;
 
     ldir = normalize(minus(light->pos, hsno->h));
-    diffuse_coef = dot(ldir, hsno->surface_normale);
+    diffuse_coef = dot(ldir, hsno->surface_normal);
     if (diffuse_coef < 0)
         diffuse_coef = 0;
     return (diffuse_coef);
@@ -165,8 +165,8 @@ double ft_get_specular(t_hsno *hsno, t_light *light)
 
     hsno->l_dir = normalize(minus(hsno->h, light->pos));
     ldir = hsno->l_dir;
-    reflect = normalize(minus(mult2(2.0 * dot(hsno->surface_normale, ldir), hsno->surface_normale), ldir));
-    specular_coef = powf(fabs(dot(hsno->surface_normale, reflect) > 0 ? 0 : dot(hsno->surface_normale, reflect)), 500) / 2;
+    reflect = normalize(minus(mult2(2.0 * dot(hsno->surface_normal, ldir), hsno->surface_normal), ldir));
+    specular_coef = powf(fabs(dot(hsno->surface_normal, reflect) > 0 ? 0 : dot(hsno->surface_normal, reflect)), 120);
     return (specular_coef);
 }
 
@@ -178,8 +178,13 @@ int shadow(t_ray *r, t_hsno *hsno, t_light *l, t_object *objects)
     t_vec3 old_hit;
     t_object *tmp;
 
+    // Problem is here
     shadow_ray.origin = l->pos;
+    // if (dot(hsno->l_dir, hsno->l_dir) < 0)
+        // shadow_ray.dir = mult2(-1, hsno->l_dir);
+    // else if (dot(hsno->l_dir, hs/no->l_dir) > 0)
     shadow_ray.dir = hsno->l_dir;
+    // End of Problem
     old_hit = plus(r->origin, mult2(hsno->hit, r->dir));
     dis_light = sqrt(dot(minus(l->pos, old_hit), minus(l->pos, old_hit)));
     tmp = objects;
@@ -195,26 +200,6 @@ int shadow(t_ray *r, t_hsno *hsno, t_light *l, t_object *objects)
     }
     return (1);
 }
-
-// t_vec3    multi_light_shadow(t_ray *r, t_hsno *hsno, t_light *l, t_object *objects, t_light *lights)
-// {
-//     t_light *tmp;
-//     int     i;
-//     t_vec3  sh;
-
-//     tmp = lights;
-//     i = 0;
-//     while (tmp && tmp->next)
-//     {
-//         sh = plus(sh, shadow(r, hsno, l, objects));
-//         tmp = tmp->next;
-//         i++;
-//     }
-//     sh.x = (int)(sh.x) % 2;
-//     sh.y = (int)(sh.y) % 2;
-//     sh.z = (int)(sh.z) % 2;
-//     return (sh);
-// }
 
 int ft_get_full_color(t_hsno *hsno, t_light *light, t_scene *scene, t_ray *ray)
 {
@@ -255,6 +240,7 @@ int ft_get_full_color2(t_hsno *hsno, t_light *light, t_scene *scene, t_ray *ray)
     int g;
     int b;
     int sh;
+    double intensity;
 
     hsno->ambcoef = 0.1;
     hsno->specoef = 0;
@@ -263,8 +249,9 @@ int ft_get_full_color2(t_hsno *hsno, t_light *light, t_scene *scene, t_ray *ray)
     while (hsno->light)
     {
         sh = shadow(ray, hsno, hsno->light, scene->object);
-        hsno->difcoef += ft_get_diffuse(hsno, hsno->light) * sh;
-        hsno->specoef += ft_get_specular(hsno, hsno->light) * sh;
+        intensity = map(hsno->light->intensity, 100, 0, 1);
+        hsno->difcoef += ft_get_diffuse(hsno, hsno->light) * sh * intensity;
+        hsno->specoef += ft_get_specular(hsno, hsno->light) * sh * intensity;
         hsno->light = hsno->light->next;
     }
     r = hsno->object->color.x * hsno->ambcoef + (int)(hsno->object->color.x * hsno->difcoef + 255 * hsno->specoef);

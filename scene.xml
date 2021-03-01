@@ -34,7 +34,7 @@
 </sphere>
 
 <cylinder>
-    <origin>0,5,10</origin>
+    <origin>-3,8,10</origin>
     <rotation>1,1,0</rotation>
     <radius>1</radius>
     <diffuse>100</diffuse>
@@ -54,7 +54,13 @@
 </cone>
 
 <light>
-    <position>-1,0,0</position>
+    <position>-1,0,10</position>
+    <color>13555</color>
+    <intensity>100</intensity>
+</light>
+
+<light>
+    <position>20,0,0</position>
     <color>13555</color>
     <intensity>100</intensity>
 </light>

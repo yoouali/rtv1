@@ -3,24 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoouali <yoouali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:04:59 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/02/26 16:28:46 by yoouali          ###   ########.fr       */
+/*   Updated: 2021/03/01 09:06:45 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/rtv1.h"
 
-double	map(int position, int max_wh, double new_min_scope
-		, double new_max_scope)
+double map(int position, int max_wh, double new_min_scope, double new_max_scope)
 {
-	double range;
+    double range;
 
-	range = new_max_scope - new_min_scope;
-	return (new_min_scope + position * (range / max_wh));
+    range = new_max_scope - new_min_scope;
+    return (new_min_scope + position * (range / max_wh));
 }
-
 
 /*svoid setup_scene(t_ray *r, t_sphere *sphere, t_light *l)
 {
@@ -46,17 +44,17 @@ double	map(int position, int max_wh, double new_min_scope
 
 t_sphere *setup_scene(t_ray *r, t_light *l, char *file)
 {
-	t_scene	*scene;
+    t_scene *scene;
 
-	scene = xml_parsser(file);
-	// if (!scene)
-	// 	printf("lhrba\n");
-	// else
-	// 	printf("lhrba2\n");
+    scene = xml_parsser(file);
+    // if (!scene)
+    // 	printf("lhrba\n");
+    // else
+    // 	printf("lhrba2\n");
     r->origin.x = 0;
     r->origin.y = 0;
     r->origin.z = -1;
-	
+
     t_sphere *sphere;
     sphere = (t_sphere *)malloc(sizeof(t_sphere));
     sphere->pos.x = 0.2;
@@ -67,8 +65,8 @@ t_sphere *setup_scene(t_ray *r, t_light *l, char *file)
     sphere->color.y = 0;
     sphere->color.z = 0;
     sphere->next = NULL;
-    
-	t_sphere *tmp;
+
+    t_sphere *tmp;
     tmp = (t_sphere *)malloc(sizeof(t_sphere));
     tmp->pos.x = 0;
     tmp->pos.y = 0;
@@ -80,8 +78,8 @@ t_sphere *setup_scene(t_ray *r, t_light *l, char *file)
 
     tmp->next = NULL;
     sphere->next = tmp;
-	tmp->next = (t_sphere *)malloc(sizeof(t_sphere));
-	tmp = tmp->next;
+    tmp->next = (t_sphere *)malloc(sizeof(t_sphere));
+    tmp = tmp->next;
     tmp->pos.x = -0.2;
     tmp->pos.y = 0;
     tmp->pos.z = 0;
@@ -89,7 +87,7 @@ t_sphere *setup_scene(t_ray *r, t_light *l, char *file)
     tmp->color.x = 0;
     tmp->color.y = 255;
     tmp->color.z = 0;
-	tmp->next = NULL;
+    tmp->next = NULL;
 
     l->pos.x = 0.9;
     l->pos.y = 0;
@@ -97,59 +95,59 @@ t_sphere *setup_scene(t_ray *r, t_light *l, char *file)
     l->color.x = 255;
     l->color.z = 255;
     l->color.y = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	
-	t_light *head;
-	head = l;
-	l->next = (t_light *)malloc(sizeof(t_light));
-	l = l->next;
-	l->pos.x = 0;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+
+    t_light *head;
+    head = l;
+    l->next = (t_light *)malloc(sizeof(t_light));
+    l = l->next;
+    l->pos.x = 0;
     l->pos.y = -1;
     l->pos.z = -1;
     l->color.x = 255;
     l->color.y = 255;
     l->color.z = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	l = head;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+    l = head;
 
-	return (sphere);
+    return (sphere);
 }
 
 t_cylinder *setup_scene2(t_ray *r, t_light *l, char *file)
 {
-	t_scene	*scene;
+    t_scene *scene;
 
-	r->origin.x = 0;
+    r->origin.x = 0;
     r->origin.y = 0;
     r->origin.z = -1;
-	scene = xml_parsser(file);
+    scene = xml_parsser(file);
 
-	l->pos.x = 0.9;
+    l->pos.x = 0.9;
     l->pos.y = 0;
     l->pos.z = 0;
     l->color.x = 255;
     l->color.z = 255;
     l->color.y = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	
-	t_light *head;
-	head = l;
-	l->next = (t_light *)malloc(sizeof(t_light));
-	l = l->next;
-	l->pos.x = 0;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+
+    t_light *head;
+    head = l;
+    l->next = (t_light *)malloc(sizeof(t_light));
+    l = l->next;
+    l->pos.x = 0;
     l->pos.y = -1;
     l->pos.z = -1;
     l->color.x = 255;
     l->color.y = 255;
     l->color.z = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	l = head;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+    l = head;
 
-	t_cylinder *c;
+    t_cylinder *c;
     c = (t_cylinder *)malloc(sizeof(t_cylinder));
     c->pos.x = 0;
     c->pos.y = 0;
@@ -179,42 +177,42 @@ t_cylinder *setup_scene2(t_ray *r, t_light *l, char *file)
     c->rot.z = 0;
     c->next = NULL;
     c = head1;
-	return (c);
+    return (c);
 }
 
 t_cone *setup_scene3(t_ray *r, t_light *l, char *file)
 {
-	t_scene	*scene;
+    t_scene *scene;
 
-	r->origin.x = 0;
+    r->origin.x = 0;
     r->origin.y = 0;
     r->origin.z = -1;
-	scene = xml_parsser(file);
+    scene = xml_parsser(file);
 
-	l->pos.x = -1;
+    l->pos.x = -1;
     l->pos.y = 0;
     l->pos.z = -1;
     l->color.x = 255;
     l->color.z = 255;
     l->color.y = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	
-	// t_light *head;
-	// head = l;
-	// l->next = (t_light *)malloc(sizeof(t_light));
-	// l = l->next;
-	// l->pos.x = 0;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+
+    // t_light *head;
+    // head = l;
+    // l->next = (t_light *)malloc(sizeof(t_light));
+    // l = l->next;
+    // l->pos.x = 0;
     // l->pos.y = -1;
     // l->pos.z = -1;
     // l->color.x = 255;
     // l->color.y = 255;
     // l->color.z = 255;
-	// l->amb_coef = 0.1;
-	// l->next = NULL;
-	// l = head;
+    // l->amb_coef = 0.1;
+    // l->next = NULL;
+    // l = head;
 
-	t_cone *c;
+    t_cone *c;
     c = (t_cone *)malloc(sizeof(t_cone));
     c->pos.x = 0;
     c->pos.y = 0;
@@ -244,42 +242,42 @@ t_cone *setup_scene3(t_ray *r, t_light *l, char *file)
     // c->rot.z = 0;
     // c->next = NULL;
     // c = head1;
-	return (c);
+    return (c);
 }
 
 t_plane *setup_scene4(t_ray *r, t_light *l, char *file)
 {
-	t_scene	*scene;
+    t_scene *scene;
 
-	r->origin.x = 0;
+    r->origin.x = 0;
     r->origin.y = 0;
     r->origin.z = -1;
-	scene = xml_parsser(file);
+    scene = xml_parsser(file);
 
-	l->pos.x = -1;
+    l->pos.x = -1;
     l->pos.y = 0;
     l->pos.z = -1;
     l->color.x = 255;
     l->color.z = 255;
     l->color.y = 255;
-	l->amb_coef = 0.1;
-	l->next = NULL;
-	
-	// t_light *head;
-	// head = l;
-	// l->next = (t_light *)malloc(sizeof(t_light));
-	// l = l->next;
-	// l->pos.x = 0;
+    l->amb_coef = 0.1;
+    l->next = NULL;
+
+    // t_light *head;
+    // head = l;
+    // l->next = (t_light *)malloc(sizeof(t_light));
+    // l = l->next;
+    // l->pos.x = 0;
     // l->pos.y = -1;
     // l->pos.z = -1;
     // l->color.x = 255;
     // l->color.y = 255;
     // l->color.z = 255;
-	// l->amb_coef = 0.1;
-	// l->next = NULL;
-	// l = head;
+    // l->amb_coef = 0.1;
+    // l->next = NULL;
+    // l = head;
 
-	t_plane *c;
+    t_plane *c;
     c = (t_plane *)malloc(sizeof(t_plane));
     c->pos.x = 0;
     c->pos.y = 0;
@@ -287,7 +285,6 @@ t_plane *setup_scene4(t_ray *r, t_light *l, char *file)
     c->color.x = 255;
     c->color.y = 0;
     c->color.z = 0;
-    c->a = 10;
     c->rot.x = 1;
     c->rot.y = 1;
     c->rot.z = 2;
@@ -309,22 +306,22 @@ t_plane *setup_scene4(t_ray *r, t_light *l, char *file)
     // c->rot.z = 0;
     // c->next = NULL;
     // c = head1;
-	return (c);
+    return (c);
 }
 
 int main(int ac, char **av)
 {
-	t_rtv1 *rtv;
+    t_rtv1 *rtv;
     t_scene *scene;
 
-	ac = 0;
+    ac = 0;
     scene = NULL;
-	rtv = malloc(sizeof(t_rtv1));
-	rtv->still_running = sdl_init_win(rtv);
-	rtv->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
+    rtv = malloc(sizeof(t_rtv1));
+    rtv->still_running = sdl_init_win(rtv);
+    rtv->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
     if (!(scene = xml_parsser(av[1])))
         return (0);
-   /* t_scene *tmp;
+    /* t_scene *tmp;
     tmp = scene;
     if (scene)
     {
@@ -367,13 +364,16 @@ int main(int ac, char **av)
         }
     }
     printf("hfjkdhsfkhdskf\n");*/
-	while (rtv->still_running == 0)
-	{
-		ft_cast_rays(rtv, scene);
-		SDL_UpdateTexture(rtv->sdl.texture, NULL, rtv->data, HEIGHT * sizeof(int));
-		SDL_RenderCopy(rtv->sdl.renderer, rtv->sdl.texture, NULL, NULL);
-		process_input(rtv);
-		SDL_RenderPresent(rtv->sdl.renderer);
-	}
-	return (0);
+    while (rtv->still_running == 0)
+    {
+        if (SDL_PollEvent(&rtv->sdl.event))
+        {
+            ft_cast_rays(rtv, scene);
+            SDL_UpdateTexture(rtv->sdl.texture, NULL, rtv->data, HEIGHT * sizeof(int));
+            SDL_RenderCopy(rtv->sdl.renderer, rtv->sdl.texture, NULL, NULL);
+            process_input(rtv);
+            SDL_RenderPresent(rtv->sdl.renderer);
+        }
+    }
+    return (0);
 }

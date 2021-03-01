@@ -7,17 +7,27 @@
 </camera>
 
 <sphere>
-    <origin>-3,0,10 </origin>
-    <radius>1</radius>
+    <origin>-6,1,10 </origin>
+    <radius>2</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
     <color>0xff0000</color>
 </sphere>
 
+<cylinder>
+    <origin>-6,0,10</origin>
+    <rotation>0,1,0</rotation>
+    <radius>1</radius>
+    <diffuse>100</diffuse>
+    <ambient>10</ambient>
+    <specular>100</specular>
+    <color>0x00ff00</color>
+</cylinder>
+
 <sphere>
-    <origin>3,0,10 </origin>
-    <radius>3</radius>
+    <origin>0,2,10 </origin>
+    <radius>4</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
@@ -26,7 +36,7 @@
 
 <sphere>
     <origin>9,0,10 </origin>
-    <radius>7</radius>
+    <radius>8</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
@@ -34,15 +44,15 @@
 </sphere>
 
 <light>
-    <position>-20,0, 25</position>
+    <position>-50,0, 25</position>
     <color>13555</color>
-    <intensity>100</intensity>
+    <intensity>0</intensity>
 </light>
 
 <light>
-    <position>-50,0, 25</position>
+    <position>10,0, 25</position>
     <color>13555</color>
-    <intensity>100</intensity>
+    <intensity>30</intensity>
 </light>
 
 </scene>

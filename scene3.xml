@@ -17,7 +17,7 @@
 
 <sphere>
     <origin>0,0,10 </origin>
-    <radius>3</radius>
+    <radius>4</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
@@ -34,7 +34,7 @@
 </sphere>
 
 <light>
-    <position>-10,0, 10</position>
+    <position>-500,0, 10</position>
     <color>13555</color>
     <intensity>100</intensity>
 </light>

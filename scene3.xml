@@ -34,7 +34,7 @@
 </sphere>
 
 <light>
-    <position>-500,0, 10</position>
+    <position>-10,0, 10</position>
     <color>13555</color>
     <intensity>100</intensity>
 </light>

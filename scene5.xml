@@ -7,23 +7,23 @@
 </camera>
 
 <cylinder>
-    <origin>0,-5,16</origin>
+    <origin>0,-5,20</origin>
     <rotation>1,0,0</rotation>
     <radius>1</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
-    <color>0x00ff00</color>
+    <color>0xffffff</color>
 </cylinder>
 
 <cylinder>
-    <origin>0,0,18</origin>
+    <origin>0,0,20</origin>
     <rotation>1,0,0</rotation>
     <radius>1</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
-    <color>0x00ff00</color>
+    <color>0xffffff</color>
 </cylinder>
 
 <cylinder>
@@ -33,12 +33,12 @@
     <diffuse>100</diffuse>
     <ambient>10</ambient>
     <specular>100</specular>
-    <color>0x00ff00</color>
+    <color>0xffffff</color>
 </cylinder>
 
 <light>
-    <position>-5, 10, 19</position>
-    <color>13555</color>
+    <position>0, 0, -1</position>
+    <color>0xff0000</color>
     <intensity>100</intensity>
 </light>
 

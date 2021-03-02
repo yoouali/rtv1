@@ -30,10 +30,10 @@ int     get_object_data(t_xmlpar *xmlpar, int rule_num, char *str)
     int         color;
 
     object = (t_object *)xmlpar->addr;
-    if ((rule_num == 10 && object->tab[0] == 1) || (rule_num == 11 && object->tab[2] == 1) || (rule_num == 13 && object->tab[3] == 1) || (rule_num == 14 && object->tab[4] == 1) ||\
-    (rule_num == 15 && object->tab[5] == 1) || (rule_num == 16 && object->tab[6] == 1) || (rule_num == 17 && object->tab[7] == 1))
+    if ((rule_num == 8 && object->tab[0] == 1) || (rule_num == 10 && object->tab[1] == 1) || (rule_num == 11 && object->tab[2] == 1) || (rule_num == 13 && object->tab[3] == 1) || (rule_num == 14 && object->tab[4] == 1) ||\
+    (rule_num == 15 && object->tab[5] == 1) || (rule_num == 16 && object->tab[6] == 1) || (rule_num == 17 && object->tab[7] == 1) || (rule_num == 18 && object->tab[8] == 1))
         return (0);
-    if (rule_num == 10 || rule_num == 13 || rule_num == 16 || rule_num == 17)
+    if (rule_num == 10 || rule_num == 13 || rule_num == 8)
         if (!get_pos(str, &vec3))
             return (0);
     if (rule_num == 11)

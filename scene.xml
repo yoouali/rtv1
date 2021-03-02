@@ -34,8 +34,8 @@
 </sphere>
 
 <cylinder>
-    <origin>-3,8,10</origin>
-    <rotation>1,1,0</rotation>
+    <origin>0,8,10</origin>
+    <rotation>0,1,0</rotation>
     <radius>1</radius>
     <diffuse>100</diffuse>
     <ambient>10</ambient>
@@ -43,25 +43,23 @@
     <color>0x00ff00</color>
 </cylinder>
 
-<cone>
-    <origin>0,0,10</origin>
-    <rotation>1,1,0</rotation>
-    <angle>5</angle>
-    <diffuse>100</diffuse>
-    <ambient>10</ambient>
-    <specular>100</specular>
-    <color>0x0000ff</color>
-</cone>
-
+<plane>
+	<position>0,0,50</position>
+	<rotation>0,1,0</rotation>
+	<color>0x00ff00</color>
+	<diffuse>100</diffuse>
+	<specular>100</specular>
+	<ambient>10</ambient>
+</plane>
 <light>
-    <position>-1,0,10</position>
+    <position>0,0,0</position>
     <color>13555</color>
     <intensity>100</intensity>
 </light>
 
 <light>
-    <position>20,0,0</position>
-    <color>13555</color>
+    <position>0,0,0</position>
+    <color>0xffffff</color>
     <intensity>100</intensity>
 </light>
 

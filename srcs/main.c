@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoouali <yoouali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:04:59 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/03/02 14:25:52 by yoouali          ###   ########.fr       */
+/*   Updated: 2021/03/01 09:06:45 by ayagoumi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,7 +321,7 @@ int main(int ac, char **av)
     rtv->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
     if (!(scene = xml_parsser(av[1])))
         return (0);
-    t_scene *tmp;
+    /* t_scene *tmp;
     tmp = scene;
     if (scene)
     {
@@ -363,8 +363,8 @@ int main(int ac, char **av)
             }
         }
     }
-    printf("hfjkdhsfkhdskf\n");
-    /*while (rtv->still_running == 0)
+    printf("hfjkdhsfkhdskf\n");*/
+    while (rtv->still_running == 0)
     {
         if (SDL_PollEvent(&rtv->sdl.event))
         {
@@ -374,6 +374,6 @@ int main(int ac, char **av)
             process_input(rtv);
             SDL_RenderPresent(rtv->sdl.renderer);
         }
-    }*/
+    }
     return (0);
 }

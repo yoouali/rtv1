@@ -30,12 +30,12 @@ int     get_camera_data(t_xmlpar *xmlpar, int rule_num, char *str)
     t_vec3  vec3;
     
     if ((rule_num == 8 && xmlpar->scene->camera->tab[0] == 1) || (rule_num == 9 &&\
-    xmlpar->scene->camera->tab[1] == 1) || (rule_num == 18 && xmlpar->scene->camera->tab[2] == 1))
+    xmlpar->scene->camera->tab[1] == 1) || (rule_num == 19 && xmlpar->scene->camera->tab[2] == 1))
     {
         free(str);
         return (0);
     }
-    if (rule_num == 18)
+    if (rule_num == 19)
     {
         xmlpar->scene->camera->tab[2] = 1;
         xmlpar->scene->camera->zoom = (double)ft_atoi(str);

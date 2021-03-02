@@ -26,20 +26,18 @@ int     get_rule_num(char *rule)
         return (11);
     if (!ft_strcmp(rule, "intensity"))
         return (12);
-    if (!ft_strcmp(rule, "rotation"))
+    if (!ft_strcmp(rule, "orientation"))
         return (13);
     if (!ft_strcmp(rule, "angle"))
         return (14);
     if (!ft_strcmp(rule, "radius"))
         return (15);
-    if (!ft_strcmp(rule, "diffuse"))
+    if (!ft_strcmp(rule, "rotation"))
         return (16);
-    if (!ft_strcmp(rule, "ambient"))
+    if (!ft_strcmp(rule, "translation"))
         return (17);
-    if (!ft_strcmp(rule, "specular"))
-        return (18);
     if (!ft_strcmp(rule, "fov"))
-        return (19);
+        return (18);
     return (0);
 }
 
@@ -49,17 +47,17 @@ int     check_rule_pos(int rule, int parent)
         return (0);
     if (parent == 1 && (rule < 2 || rule > 7))
         return (0);
-    if (parent == 2 && rule != 8 && rule != 9 && rule != 19)
+    if (parent == 2 && rule != 8 && rule != 9 && rule != 18)
         return (0);
     if (parent == 3 && rule != 10 && rule != 12 && rule != 11)
         return (0);
-    if (parent == 4 && rule != 11 && rule != 10 && rule != 13 && rule != 16 && rule != 17 && rule != 18)
+    if (parent == 4 && rule != 11 && rule != 10 && rule != 13 && rule != 16 && rule != 17)
         return (0);
-    if (parent == 5 && rule != 11 && rule != 8 && rule != 15 && rule != 16 && rule != 17 && rule != 18)
+    if (parent == 5 && rule != 11 && rule != 10 && rule != 15 && rule != 16 && rule != 17)
         return (0);
-    if (parent == 6 && rule != 8 && rule != 11 && rule != 13 && rule != 15 && rule != 16 && rule != 17 && rule != 18)
+    if (parent == 6 && rule != 10 && rule != 11 && rule != 13 && rule != 15 && rule != 16 && rule != 17)
         return (0);
-    if (parent == 7 && rule != 11 && rule != 8 && rule != 13 && rule != 14 && rule != 16 && rule != 17 && rule != 18)
+    if (parent == 7 && rule != 11 && rule != 10 && rule != 13 && rule != 14 && rule != 16 && rule != 17)
         return (0);
     return (1);
 }

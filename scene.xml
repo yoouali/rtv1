@@ -1,65 +1,39 @@
 <scene>
 
 <camera>
-    <origin>0,0,0</origin>
-    <lookat>0,0,1</lookat>
+    <origin>-10,0,10</origin>
+    <lookat>1,0,0</lookat>
     <fov>120</fov>
 </camera>
 
 <sphere>
-    <origin>2,0,10 </origin>
+    <position>2,0,10 </position>
     <radius>1</radius>
-    <diffuse>100</diffuse>
-    <ambient>10</ambient>
-    <specular>100</specular>
     <color>0xff0000</color>
 </sphere>
 
 <sphere>
-    <origin>0,0,10 </origin>
+    <position>0,0,10 </position>
     <radius>1</radius>
-    <diffuse>100</diffuse>
-    <ambient>10</ambient>
-    <specular>100</specular>
     <color>0xff0000</color>
 </sphere>
 
 <sphere>
-    <origin>-2,0,10 </origin>
+    <position>-2,0,10 </position>
     <radius>1</radius>
-    <diffuse>100</diffuse>
-    <ambient>10</ambient>
-    <specular>100</specular>
     <color>0xff0000</color>
 </sphere>
 
 <cylinder>
-    <origin>0,8,10</origin>
-    <rotation>0,1,0</rotation>
+    <position>0,5,20</position>
+    <orientation>0,1,0</orientation>
     <radius>1</radius>
-    <diffuse>100</diffuse>
-    <ambient>10</ambient>
-    <specular>100</specular>
     <color>0x00ff00</color>
 </cylinder>
 
-<plane>
-	<position>0,0,50</position>
-	<rotation>0,1,0</rotation>
-	<color>0x00ff00</color>
-	<diffuse>100</diffuse>
-	<specular>100</specular>
-	<ambient>10</ambient>
-</plane>
 <light>
     <position>0,0,0</position>
     <color>13555</color>
-    <intensity>100</intensity>
-</light>
-
-<light>
-    <position>0,0,0</position>
-    <color>0xffffff</color>
     <intensity>100</intensity>
 </light>
 

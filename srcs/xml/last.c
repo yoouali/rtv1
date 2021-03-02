@@ -1,40 +1,28 @@
 #include "../../inc/xml.h"
 
-int     check_light_structer(t_light *light)
+int     check_object_structer(t_object  *object)
 {
-    t_light *tmp;
-    int     i;
+    t_object    *tmp;
 
-    tmp = light;
+    tmp = object;
     while (tmp)
     {
-        i = 0;
-        while (i < 3)
-        {
-            if (tmp->tab[i] != 1)
-                return (0);
-            i++;
-        }
+        if (tmp->tab[0] == 0 || tmp->tab[1] == 0 || tmp->tab[5] == 0 || tmp->tab[4] == 0 || tmp->tab[6] == 0)
+            return (0);
         tmp = tmp->next;
     }
     return (1);
 }
 
-int     check_object_structer(t_object *object)
+int     check_light_structer(t_light  *light)
 {
-    t_object    *tmp;
-    int         i;
+    t_light     *tmp;
 
-    tmp = object;
+    tmp = light;
     while (tmp)
     {
-        i = 0;
-        while(i < 9)
-        {
-            if (tmp->tab[i] != 1)
-                return (0);
-            i++;
-        }
+        if (tmp->tab[0] == 0 || tmp->tab[1] == 0 || tmp->tab[2] == 0)
+            return (0);
         tmp = tmp->next;
     }
     return (1);
@@ -42,20 +30,17 @@ int     check_object_structer(t_object *object)
 
 int     structer_check(t_xmlpar xmlpar)
 {
-    int     i;
+    t_camera    *camera;
+    t_light     *light;
 
     if (!xmlpar.scene->camera)
         return (0);
-    i = 0;
-    while (i < 3)
-    {
-        if (xmlpar.scene->camera->tab[i] != 1)
-            return (0);
-        i++;
-    }
+    camera = xmlpar.scene->camera;
+    light = xmlpar.scene->light;
+    if (camera->tab[0] == 0 || camera->tab[1] == 0 || camera->tab[2] == 0)
+        return (0);
     if (xmlpar.scene->light)
         if (!check_light_structer(xmlpar.scene->light))
-            return (0);
     if (xmlpar.scene->object)
         if (!check_object_structer(xmlpar.scene->object))
             return (0);

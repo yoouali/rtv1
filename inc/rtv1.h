@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoouali <yoouali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:05:37 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/03/01 10:46:12 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:59:36 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,18 +106,15 @@ typedef struct			s_plane
 typedef struct	s_object
 {
 	int		type;
-	int		tab[9];
+	int		tab[7];
 	t_vec3	position;
-	t_vec3	origin;
+	t_vec3	orientation;
+	t_vec3	translation;
 	t_vec3	rotation;
 	double	raduis;
-	double	angle;
+	double	angle  ;
 	t_vec3	color;
-	double	diffuse;
-	double	ambient;
-	double	specular;
-	t_vec3	h;
-	struct	s_object *next;
+		struct	s_object *next;
 }				t_object;
 
 typedef struct			s_sdl

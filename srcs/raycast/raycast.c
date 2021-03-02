@@ -5,7 +5,7 @@ double intersect_sphere(t_ray r, t_object *sphere)
     t_intersect inter;
 
     inter.a = dot(r.dir, r.dir);
-    inter.x = minus(r.origin, sphere->origin);
+    inter.x = minus(r.origin, sphere->position);
     inter.b = 2 * dot(r.dir, inter.x);
     inter.c = dot(inter.x, inter.x) - (sphere->raduis * sphere->raduis);
     inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
@@ -25,8 +25,8 @@ double intersect_plane(t_ray r, t_object *plane)
     t_intersect inter;
 
     inter.x = minus(r.origin, plane->position);
-    inter.a = dot(r.dir, plane->rotation);
-    inter.b = dot(inter.x, plane->rotation);
+    inter.a = dot(r.dir, plane->orientation);
+    inter.b = dot(inter.x, plane->orientation);
     if (inter.a == 0 || (inter.a > 0 && inter.b > 0) || (inter.a < 0 && inter.b < 0))
         return (-1);
     inter.t1 = -inter.b / inter.a;
@@ -39,10 +39,10 @@ double intersect_cylinder(t_ray r, t_object *cylinder)
 {
     t_intersect inter;
 
-    inter.a = dot(r.dir, r.dir) - (dot(r.dir, cylinder->rotation) * dot(r.dir, cylinder->rotation));
-    inter.x = minus(r.origin, cylinder->origin);
-    inter.b = 2 * (dot(r.dir, inter.x) - (dot(r.dir, cylinder->rotation) * dot(inter.x, cylinder->rotation)));
-    inter.c = dot(inter.x, inter.x) - (dot(inter.x, cylinder->rotation) * dot(inter.x, cylinder->rotation)) - (cylinder->raduis * cylinder->raduis);
+    inter.a = dot(r.dir, r.dir) - (dot(r.dir, cylinder->orientation) * dot(r.dir, cylinder->orientation));
+    inter.x = minus(r.origin, cylinder->position);
+    inter.b = 2 * (dot(r.dir, inter.x) - (dot(r.dir, cylinder->orientation) * dot(inter.x, cylinder->orientation)));
+    inter.c = dot(inter.x, inter.x) - (dot(inter.x, cylinder->orientation) * dot(inter.x, cylinder->orientation)) - (cylinder->raduis * cylinder->raduis);
     inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
     if (inter.delta < 0)
         return (-1);
@@ -61,10 +61,10 @@ double intersect_cone(t_ray r, t_object *cone)
 
     inter.k = tan(cone->angle * 180.0 / M_PI);
     inter.k = 1.0 + inter.k * inter.k;
-    inter.a = dot(r.dir, r.dir) - inter.k * (dot(r.dir, cone->rotation) * dot(r.dir, cone->rotation));
-    inter.x = minus(r.origin, cone->origin);
-    inter.b = 2 * (dot(r.dir, inter.x) - inter.k * (dot(r.dir, cone->rotation) * dot(inter.x, cone->rotation)));
-    inter.c = dot(inter.x, inter.x) - inter.k * (dot(inter.x, cone->rotation) * dot(inter.x, cone->rotation));
+    inter.a = dot(r.dir, r.dir) - inter.k * (dot(r.dir, cone->orientation) * dot(r.dir, cone->orientation));
+    inter.x = minus(r.origin, cone->position);
+    inter.b = 2 * (dot(r.dir, inter.x) - inter.k * (dot(r.dir, cone->orientation) * dot(inter.x, cone->orientation)));
+    inter.c = dot(inter.x, inter.x) - inter.k * (dot(inter.x, cone->orientation) * dot(inter.x, cone->orientation));
     inter.delta = inter.b * inter.b - (4 * inter.a * inter.c);
     if (inter.delta < 0)
         return (-1);
@@ -98,24 +98,24 @@ void calc_surface_normal(t_ray r, t_object *object, t_hsno *hsno)
     hsno->h = plus(r.origin, mult2(hsno->hit, r.dir));
     if (object->type == 0)
     {
-        if (dot(r.dir, object->rotation) < 0)
-            hsno->surface_normal = minus((t_vec3){0, 0, 0}, object->rotation);
+        if (dot(r.dir, object->orientation) < 0)
+            hsno->surface_normal = minus((t_vec3){0, 0, 0}, object->orientation);
         else
-            hsno->surface_normal = object->rotation;
+            hsno->surface_normal = object->orientation;
     }
     if (object->type == 1)
-        hsno->surface_normal = normalize(minus(hsno->h, object->origin));
+        hsno->surface_normal = normalize(minus(hsno->h, object->position));
     if (object->type == 2)
     {
-        m = dot(r.dir, mult2(hsno->hit, object->rotation)) + dot(minus(r.origin, object->origin), object->rotation);
-        hsno->surface_normal = normalize(minus(minus(hsno->h, object->origin), mult2(m, object->rotation)));
+        m = dot(r.dir, mult2(hsno->hit, object->orientation)) + dot(minus(r.origin, object->position), object->orientation);
+        hsno->surface_normal = normalize(minus(minus(hsno->h, object->position), mult2(m, object->orientation)));
     }
     if (object->type == 3)
     {
         k = tan(object->angle * 180 / M_PI);
         k = 1.0 + k * k;
-        m = dot(r.dir, mult2(hsno->hit, object->rotation)) + dot(minus(r.origin, object->origin), object->rotation);
-        hsno->surface_normal = normalize(minus(minus(hsno->h, object->origin), mult2(k, mult2(m, object->rotation))));
+        m = dot(r.dir, mult2(hsno->hit, object->orientation)) + dot(minus(r.origin, object->position), object->orientation);
+        hsno->surface_normal = normalize(minus(minus(hsno->h, object->position), mult2(k, mult2(m, object->orientation))));
     }
 }
 

@@ -41,23 +41,22 @@ int     get_light_data(t_xmlpar *xmlpar, int rule_num, char *str)
     int     color;
     
     light = (t_light *)xmlpar->addr;
-    if ((rule_num == 10 && light->tab[0] == 1) || (rule_num == 11 && light->tab[1] == 1) ||\
-    (rule_num == 12 && light->tab[2] == 1))
-        return (0);
-    if (rule_num == 12)
+    if (rule_num == 12 && light->tab[2] == 0)
         {
             light->tab[2] = 1;
-            light->intensity = (double)ft_atoi(str);            
+            light->intensity = (double)ft_atoi(str);
+            return (1);
         }
-    if (rule_num == 11)
+    if (rule_num == 11 && light->tab[1] == 0)
     {
         color = get_color_data(str);
         light->tab[1] = 1;
         light->color.x = (color >> 16) & 255;
         light->color.y = (color >> 8) & 255;
         light->color.z = color & 255;
+        return (1);
     }
-    if (rule_num == 10)
+    if (rule_num == 10 && light->tab[0] == 0)
     {
         if (!get_pos(str, &vec3))
             return (0);
@@ -65,6 +64,7 @@ int     get_light_data(t_xmlpar *xmlpar, int rule_num, char *str)
         light->pos.x = vec3.x;
         light->pos.y = vec3.y;
         light->pos.z = vec3.z;
+        return (1);
     }
-    return (1);
+    return (0);
 }

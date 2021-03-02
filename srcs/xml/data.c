@@ -29,38 +29,34 @@ int     get_camera_data(t_xmlpar *xmlpar, int rule_num, char *str)
 {
     t_vec3  vec3;
     
-    if ((rule_num == 8 && xmlpar->scene->camera->tab[0] == 1) || (rule_num == 9 &&\
-    xmlpar->scene->camera->tab[1] == 1) || (rule_num == 19 && xmlpar->scene->camera->tab[2] == 1))
-    {
-        free(str);
-        return (0);
-    }
-    if (rule_num == 19)
+    if (rule_num == 18 && xmlpar->scene->camera->tab[2] == 0)
     {
         xmlpar->scene->camera->tab[2] = 1;
         xmlpar->scene->camera->zoom = (double)ft_atoi(str);
-        free(str);
+        return(1);
     }
     else
     {
         if(!(get_pos(str, &vec3)))
             return (0);
-        if (rule_num == 8)
+        if (rule_num == 8 && xmlpar->scene->camera->tab[0] == 0)
         {
             xmlpar->scene->camera->tab[0] = 1;
             xmlpar->scene->camera->pos.x = vec3.x;
             xmlpar->scene->camera->pos.y = vec3.y;
             xmlpar->scene->camera->pos.z = vec3.z;
+            return (1);
         }
-        if (rule_num == 9)
+        if (rule_num == 9 && xmlpar->scene->camera->tab[1] == 0)
         {
             xmlpar->scene->camera->tab[1] = 1;
             xmlpar->scene->camera->dir.x = vec3.x;
             xmlpar->scene->camera->dir.y = vec3.y;
             xmlpar->scene->camera->dir.z = vec3.z;
+            return (1);
         }
     }
-    return (1);
+    return (0);
 }
 
 int     read_data(t_xmlpar *xmlpar, int rule_num, int parent)

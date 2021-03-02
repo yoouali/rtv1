@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayagoumi <ayagoumi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoouali <yoouali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 15:04:59 by ayagoumi          #+#    #+#             */
-/*   Updated: 2021/03/01 09:06:45 by ayagoumi         ###   ########.fr       */
+/*   Updated: 2021/03/02 16:07:40 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,49 +321,8 @@ int main(int ac, char **av)
     rtv->data = malloc(sizeof(int) * (WIDTH * HEIGHT));
     if (!(scene = xml_parsser(av[1])))
         return (0);
-    /* t_scene *tmp;
+    t_scene *tmp;
     tmp = scene;
-    if (scene)
-    {
-        printf("camera :\n");
-        printf("origin : x:%d | y:%d | z:%d\n", (int)scene->camera->pos.x, (int)scene->camera->pos.y, (int)scene->camera->pos.z);
-        printf("lookat : x:%d | y:%d | z:%d\n", (int)scene->camera->dir.x, (int)scene->camera->dir.y, (int)scene->camera->dir.z);
-        printf("zoom : %f\n", scene->camera->zoom);
-        if (scene->light)
-        {
-            while (scene->light)
-            {
-                printf("position : x:%d | y:%d | z:%d\n", (int)scene->light->pos.x, (int)scene->light->pos.y, (int)scene->light->pos.z);
-                printf("intensity : %f\n", scene->light->intensity);
-                printf("color : %f | %f | %f\n", scene->light->color.x, scene->light->color.y, scene->light->color.z);
-                scene->light = scene->light->next;
-            }
-        }
-        if (scene->object)
-        {
-            while (scene->object)
-            {
-                printf("the type : %d\n", scene->object->type);
-                if (scene->object->type > 0)
-                    printf("origin : x:%d | y:%d | z:%d\n", (int)scene->object->origin.x, (int)scene->object->origin.y, (int)scene->object->origin.z);
-                if (scene->object->type == 0)
-                    printf("position : x:%d | y:%d | z:%d\n", (int)scene->object->position.x, (int)scene->object->position.y, (int)scene->object->position.z);
-                if (scene->object->type != 1)
-                    printf("rotation : x:%d | y:%d | z:%d\n", (int)scene->object->rotation.x, (int)scene->object->rotation.y, (int)scene->object->rotation.z);
-                if (scene->object->type == 1 || scene->object->type == 2)
-                    printf("radius : %d\n", (int)scene->object->raduis);
-                if (scene->object->type == 3)
-                    printf("angle : %d\n", (int)scene->object->angle);
-                printf("color : | %f | %f | %f\n", scene->object->color.x, scene->object->color.y, scene->object->color.z);
-                printf("diffuse : %f\n", scene->object->diffuse);
-                printf("ambient : %f\n", scene->object->ambient);
-                printf("specular : %f\n", scene->object->specular);
-                printf("\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\llll|\n");
-                scene->object = scene->object->next;
-            }
-        }
-    }
-    printf("hfjkdhsfkhdskf\n");*/
     while (rtv->still_running == 0)
     {
         if (SDL_PollEvent(&rtv->sdl.event))

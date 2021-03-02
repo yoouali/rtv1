@@ -1,9 +1,9 @@
 <scene>
 
 <camera>
-    <origin>1,2,3</origin>
-    <lookat>1,2,3</lookat>
-    <fov>123</fov>
+    <origin>0,0,0</origin>
+    <lookat>0,0,1</lookat>
+    <fov>120</fov>
 </camera>
 
 <sphere>

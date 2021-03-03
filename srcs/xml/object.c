@@ -69,7 +69,7 @@ int     get_object_data(t_xmlpar *xmlpar, int rule_num, char *str)
         object->angle = (double)ft_atoi(str);
         return (1);
     }
-    if (rule_num == 10 && object->tab[2] == 0)
+    if (rule_num == 17 && object->tab[2] == 0)
     {
         object->tab[2] = 1;
         object->translation = vec3;

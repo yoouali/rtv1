@@ -29,6 +29,8 @@
     <orientation>0,1,0</orientation>
     <radius>1</radius>
     <color>0x00fff0</color>
+    <rotation>30,0,0</rotation>
+    <translation>10,0,0</translation>
 </cylinder>
 
 <light>

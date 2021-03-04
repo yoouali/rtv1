@@ -247,12 +247,12 @@ void ft_cast_rays(t_rtv1 *rtv, t_scene *scene)
     double u, v;
     t_hsno hsno;
 
-    r.origin.x = scene->camera->pos.x + 0.0005;
+    r.origin.x = scene->camera->pos.x ;
     r.origin.y = scene->camera->pos.y;
-    r.origin.z = scene->camera->pos.z;
+    r.origin.z = scene->camera->pos.z+ 0.0005;
     i = 0;
     t_vec3 wv = normalize(minus(scene->camera->dir, scene->camera->pos));
-    t_vec3 uv = cross((t_vec3){0.005, 1, 0}, wv);
+    t_vec3 uv = normalize(cross((t_vec3){0.005, 1, 0}, wv));
     t_vec3 vv = cross(wv, uv);
     double h = tanf((scene->camera->zoom * M_PI / 180.0) / 2);
     double w = (double)(WIDTH / HEIGHT) * h;

@@ -1,37 +1,28 @@
 <scene>
 
 <camera>
-    <origin>0,0,0</origin>
+    <origin>0,10,0</origin>
     <lookat>0,0,1</lookat>
     <fov>120</fov>
 </camera>
 
 <sphere>
-    <position>2,0,10 </position>
+    <position>2,0,0 </position>
     <radius>1</radius>
     <color>0xff0000</color>
 </sphere>
 
 <sphere>
-    <position>0,0,10 </position>
+    <position>0,0,0 </position>
     <radius>1</radius>
     <color>0x00ff00</color>
 </sphere>
 
 <sphere>
-    <position>-2,0,10 </position>
+    <position>-2,0,0</position>
     <radius>1</radius>
     <color>0x0000ff</color>
 </sphere>
-
-<cylinder>
-    <position>0,0,20</position>
-    <orientation>0,1,0</orientation>
-    <radius>1</radius>
-    <color>0x00fff0</color>
-    <rotation>30,0,0</rotation>
-    <translation>10,0,0</translation>
-</cylinder>
 
 <light>
     <position>0,0,0</position>

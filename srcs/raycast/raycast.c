@@ -99,9 +99,9 @@ void calc_surface_normal(t_ray r, t_object *object, t_hsno *hsno)
     if (object->type == 0)
     {
         if (dot(r.dir, object->orientation) < 0)
-            hsno->surface_normal = minus((t_vec3){0, 0, 0}, object->orientation);
-        else
             hsno->surface_normal = object->orientation;
+        else
+            hsno->surface_normal = mult2(-1, object->orientation);
     }
     if (object->type == 1)
         hsno->surface_normal = normalize(minus(hsno->h, object->position));
@@ -247,9 +247,9 @@ void ft_cast_rays(t_rtv1 *rtv, t_scene *scene)
     double u, v;
     t_hsno hsno;
 
-    r.origin.x = scene->camera->pos.x ;
+    r.origin.x = scene->camera->pos.x;
     r.origin.y = scene->camera->pos.y;
-    r.origin.z = scene->camera->pos.z+ 0.0005;
+    r.origin.z = scene->camera->pos.z + 0.0005;
     i = 0;
     t_vec3 wv = normalize(minus(scene->camera->dir, scene->camera->pos));
     t_vec3 uv = normalize(cross((t_vec3){0.005, 1, 0}, wv));
